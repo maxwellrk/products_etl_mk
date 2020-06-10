@@ -45,18 +45,10 @@ csvCleaner = (csvName) => {
                 writeStream.write(CSV.stringify(tempObj));
               tempObj = {};
               if (data[subKey].split('\n').length > 1) {
-                tempObj[0] = data[subKey]
-                  .split('\n')[1]
-                  .split(',')[0]
-                  .replace(/['"]+/g, '');
-                tempObj[1] = data[subKey]
-                  .split('\n')[1]
-                  .split(',')[1]
-                  .replace(/['"]+/g, '');
-                tempObj[2] = data[subKey]
-                  .split('\n')[1]
-                  .split(',')[2]
-                  .replace(/['"]+/g, '');
+                const targetData = data[subKey].split('\n')[1].split(',');
+                tempObj[0] = targetData[0].replace(/['"]+/g, '');
+                tempObj[1] = targetData[1].replace(/['"]+/g, '');
+                tempObj[2] = targetData[2].replace(/['"]+/g, '');
               }
             }
           }
