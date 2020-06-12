@@ -17,7 +17,6 @@ const loadCsv = (location, tableName) => {
       permitLocalInfile: true,
     })
     .then((conn) => {
-      console.log('running', query);
       return conn
         .query(
           `LOAD DATA LOCAL INFILE '${locationOfCsv(
@@ -25,12 +24,10 @@ const loadCsv = (location, tableName) => {
           )}' INTO TABLE ${tableName} FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\r\n'`
         )
         .then((query) => {
-          console.log('completed', query);
           conn.end();
         });
     })
     .catch((err) => {
-      console.log('this is the error', err);
       conn.end();
     });
 };
